@@ -1,0 +1,4 @@
+# Never publish the paid product or working files
+ENTREGAVEIS/
+PROMPTS-IMAGENS.md
+*.zip
