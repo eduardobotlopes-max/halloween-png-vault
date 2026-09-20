@@ -150,7 +150,12 @@ header.top .in{max-width:var(--wrap); margin:0 auto; padding:14px clamp(16px,4vw
 .make figcaption span{display:block; font-weight:500; color:var(--muted); font-size:14px}
 
 /* ---------- stats ---------- */
+.trust-two{display:grid; grid-template-columns:repeat(2,1fr); gap:56px; margin-bottom:64px}
+.trust-two .v{font-size:clamp(60px,10vw,104px)}
+.trust-two h3{font-size:clamp(22px,3vw,30px); margin:10px 0 10px}
+.trust-two p{max-width:46ch}
 .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:24px}
+.stat .v span{font-variant-numeric:tabular-nums}
 .stat .v{font-family:"Barlow Condensed",sans-serif; font-weight:900; font-size:clamp(48px,7vw,76px); line-height:1}
 .stat h3{margin:6px 0 6px; font-size:19px}
 .stat p{font-size:15px; margin:0}
@@ -235,6 +240,7 @@ footer nav a{color:var(--muted); text-decoration:none}
   .bonus-grid .bonus:nth-child(4){grid-column:auto}
   .make{grid-template-columns:repeat(2,1fr)}
   .stats{grid-template-columns:repeat(2,1fr)}
+  .trust-two{grid-template-columns:1fr; gap:40px; margin-bottom:44px}
   .plans{grid-template-columns:1fr}
   .plan.best{order:-1}
   .guarantee{flex-direction:column; text-align:center}
@@ -381,13 +387,33 @@ footer nav a{color:var(--muted); text-decoration:none}
   </div>
 </section>
 
+<!-- =================== TRUST (big numbers) =================== -->
+<section>
+  <div class="wrap">
+    <div class="trust-two">
+      <div class="stat">
+        <p class="eyebrow"><svg width="14" height="14" viewBox="0 0 20 20" fill="#FBBF24"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.2 1.5 6.3L10 14.9 4.3 18l1.5-6.3L1 7.5l6.4-.6Z"/></svg>Since last Halloween</p>
+        <div class="v pk"><span data-count="3500" data-suffix="+">3,500+</span></div>
+        <h3>Happy customers</h3>
+        <p>Makers across the UK used these designs last Halloween for shop orders, school fairs and family costumes — and came back for this year's Vault.</p>
+      </div>
+      <div class="stat">
+        <p class="eyebrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#84CC16" stroke-width="1.8"/><circle cx="12" cy="12" r="3" fill="#84CC16"/></svg>Product DNA</p>
+        <div class="v"><span data-count="100" data-suffix="%">100%</span></div>
+        <h3>Designed &amp; developed by industry experts.</h3>
+        <p>Every file is built with working crafters and print shops, so it behaves properly in Cricut, Canva and a sublimation printer — not just on screen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- =================== STATS =================== -->
 <section>
   <div class="wrap">
     <div class="stats">
-      <div class="stat"><div class="v pk">10,000+</div><h3>Halloween designs</h3><p>20 styles, sorted into tidy folders so you find the right one in seconds.</p></div>
-      <div class="stat"><div class="v">300</div><h3>DPI, print quality</h3><p>Crisp on an A3 hoodie print, a mug or a sticker sheet.</p></div>
-      <div class="stat"><div class="v sl">100%</div><h3>Transparent PNG</h3><p>No backgrounds to remove. Drag, drop, done.</p></div>
+      <div class="stat"><div class="v pk"><span data-count="10000" data-suffix="+">10,000+</span></div><h3>Halloween designs</h3><p>20 styles, sorted into tidy folders so you find the right one in seconds.</p></div>
+      <div class="stat"><div class="v"><span data-count="300">300</span></div><h3>DPI, print quality</h3><p>Crisp on an A3 hoodie print, a mug or a sticker sheet.</p></div>
+      <div class="stat"><div class="v sl"><span data-count="100" data-suffix="%">100%</span></div><h3>Transparent PNG</h3><p>No backgrounds to remove. Drag, drop, done.</p></div>
       <div class="stat"><div class="v pu">£0</div><h3>Monthly fees</h3><p>One payment. Download and keep the files forever.</p></div>
     </div>
   </div>
@@ -428,6 +454,9 @@ footer nav a{color:var(--muted); text-decoration:none}
       <div class="ph r-4-5 review" data-img="DEP-01" data-label="DEP-01 · real review screenshot (4:5)"></div>
       <div class="ph r-4-5 review" data-img="DEP-02" data-label="DEP-02 · real review screenshot (4:5)"></div>
       <div class="ph r-4-5 review" data-img="DEP-03" data-label="DEP-03 · real review screenshot (4:5)"></div>
+      <div class="ph r-4-5 review" data-img="DEP-04" data-label="DEP-04 · real review screenshot (4:5)"></div>
+      <div class="ph r-4-5 review" data-img="DEP-05" data-label="DEP-05 · real review screenshot (4:5)"></div>
+      <div class="ph r-4-5 review" data-img="DEP-06" data-label="DEP-06 · real review screenshot (4:5)"></div>
     </div>
   </div>
 </section>
@@ -587,9 +616,17 @@ var CHECKOUT = {
     if (i >= exts.length){ el.dispatchEvent(new Event('ph-missing')); return; }
     var img = new Image();
     img.alt = el.getAttribute('data-label').replace(/^[A-Z]+-\d+[a-z]? · /, '');
-    img.loading = 'lazy'; img.decoding = 'async';
-    img.onload = function(){ el.innerHTML = ''; el.appendChild(img); el.classList.add('loaded'); el.dispatchEvent(new Event('ph-loaded')); };
-    img.onerror = function(){ tryLoad(el, i + 1); };
+    img.decoding = 'async';
+    // above the fold loads straight away; everything else waits until it is scrolled near
+    img.loading = el.getBoundingClientRect().top < window.innerHeight * 1.2 ? 'eager' : 'lazy';
+    img.style.opacity = '0';
+    el.appendChild(img);          // must be in the document, or lazy loading never starts
+    img.onload = function(){
+      img.style.opacity = '';
+      el.classList.add('loaded');
+      el.dispatchEvent(new Event('ph-loaded'));
+    };
+    img.onerror = function(){ el.removeChild(img); tryLoad(el, i + 1); };
     img.src = 'img/' + el.getAttribute('data-img') + '.' + exts[i];
   }
   document.querySelectorAll('.ph[data-img]').forEach(function(el){ tryLoad(el, 0); });
@@ -600,6 +637,41 @@ var CHECKOUT = {
     el.addEventListener('ph-loaded', function(){ reviews.hidden = false; });
     el.addEventListener('ph-missing', function(){ el.style.display = 'none'; });
   });
+})();
+
+/* Big numbers count up the first time they scroll into view */
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function fmt(n, suffix){ return n.toLocaleString('en-GB') + suffix; }
+  function run(el){
+    var target = parseInt(el.getAttribute('data-count'), 10);
+    var suffix = el.getAttribute('data-suffix') || '';
+    if (reduce){ el.textContent = fmt(target, suffix); return; }
+    var dur = 1300, t0 = performance.now();
+    (function step(now){
+      var p = Math.min(1, (now - t0) / dur);
+      var eased = 1 - Math.pow(1 - p, 3);          // fast first, settles on the number
+      el.textContent = fmt(Math.round(target * eased), p < 1 ? '' : suffix);
+      if (p < 1) requestAnimationFrame(step);
+    })(t0);
+  }
+  var pending = [].slice.call(document.querySelectorAll('[data-count]'));
+  function finish(el){
+    var i = pending.indexOf(el);
+    if (i === -1) return;            // already counted
+    pending.splice(i, 1);
+    run(el);
+  }
+  // the final number is already in the markup; it is only zeroed at the moment it animates,
+  // so a page with no JS, no IntersectionObserver or a never-fired observer still reads correctly
+  if ('IntersectionObserver' in window && !reduce){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ io.unobserve(e.target); finish(e.target); }
+      });
+    }, {threshold: 0.4});
+    pending.forEach(function(el){ io.observe(el); });
+  }
 })();
 
 /* "Made for ..." rotator */
