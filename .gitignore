@@ -2,3 +2,4 @@
 ENTREGAVEIS/
 PROMPTS-IMAGENS.md
 *.zip
+__pycache__/
