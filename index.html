@@ -93,7 +93,7 @@ header.top .in{max-width:var(--wrap); margin:0 auto; padding:14px clamp(16px,4vw
 .r-4-3{aspect-ratio:4/3} .r-4-5{aspect-ratio:4/5} .r-1-1{aspect-ratio:1/1} .r-16-9{aspect-ratio:16/9}
 
 wistia-player[media-id='jo304gfysh']:not(:defined){background:center / contain no-repeat url('https://fast.wistia.com/embed/medias/jo304gfysh/swatch'); display:block; filter:blur(5px); padding-top:100.0%}
-.hero-video{width:100%; max-width:430px; margin-inline:auto; align-self:center;
+.hero-video{order:3; width:100%; max-width:600px; margin:6px auto 28px; align-self:center;
   border-radius:18px; overflow:hidden; background:var(--surface);
   border:1px solid rgba(255,255,255,.10);
   box-shadow:0 22px 60px rgba(0,0,0,.6), 0 0 0 6px rgba(255,122,26,.06)}
@@ -103,7 +103,16 @@ wistia-player[media-id='jo304gfysh']:not(:defined){background:center / contain n
 .hero{position:relative; overflow:hidden; background:
   radial-gradient(700px 380px at 85% 10%, rgba(139,92,246,.28), transparent 70%),
   radial-gradient(600px 360px at 10% 90%, rgba(255,122,26,.20), transparent 70%), var(--bg)}
-.hero .wrap{display:grid; grid-template-columns:1.15fr .85fr; gap:56px; align-items:center; padding-top:56px}
+.hero .wrap{display:flex; flex-direction:column; align-items:center; text-align:center; gap:0; padding-top:52px}
+.hero .wrap > div:first-child{display:contents}
+.hero .eyebrow{order:1}
+.hero h1{order:2; max-width:16ch; margin-bottom:14px}
+.hero .madefor{order:4; margin-bottom:20px}
+.hero .checks{order:5; justify-items:center; margin-bottom:24px}
+.hero .hero-price{order:6; justify-content:center}
+.hero .cta{order:7}
+.hero .trust-row{order:8}
+.hero .checks li{text-align:left}
 .hero h1 .big{display:block; font-size:1.25em; color:var(--pumpkin); text-shadow:0 0 40px rgba(255,122,26,.35)}
 .madefor{font-size:clamp(20px,4vw,28px); font-weight:700; color:#fff; margin:6px 0 18px; min-height:1.3em}
 .madefor b{color:var(--slime); display:inline-block; transition:opacity .3s ease, transform .3s ease}
@@ -264,19 +273,7 @@ footer nav a{color:var(--muted); text-decoration:none}
 .creator-photo img{width:100%; height:auto; border-radius:20px; display:block}
 /* ---------- responsive ---------- */
 @media (max-width:900px){
-  /* headline first, then the product shot, then the reasons to buy and the button */
-  .hero .wrap{display:flex; flex-direction:column; gap:0; text-align:center}
-  .hero .wrap > div:first-child{display:contents}
-  .hero .eyebrow{order:1}
-  .hero h1{order:2; margin-bottom:10px}
-  .hero-video{order:3; margin:6px auto 24px; max-width:440px}
-  .hero .madefor{order:4; margin-bottom:22px}
-  .hero .checks{order:6; justify-items:center; margin-bottom:22px}
-  .hero .hero-price{order:7}
-  .hero .cta{order:8}
-  .hero .trust-row{order:9}
-  .hero .checks li{text-align:left}
-  .hero-price{justify-content:center}
+  .hero-video{max-width:440px; margin-bottom:22px}
   .grid-3,.bonus-grid,.reviews-grid{grid-template-columns:1fr}
   .bonus-grid .bonus:nth-child(4){grid-column:auto}
   .make{grid-template-columns:repeat(2,1fr)}
