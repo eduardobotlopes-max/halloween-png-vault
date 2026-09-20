@@ -16,6 +16,10 @@
 
 <!-- META PIXEL: paste the Meta Pixel base code (fbq) here -->
 
+<!-- Wistia player -->
+<script src="https://fast.wistia.com/player.js" async></script>
+<script src="https://fast.wistia.com/embed/jo304gfysh.js" async type="module"></script>
+
 <!-- UTMify UTM capture · loads cdn.utmify.com.br/scripts/utms/latest.js -->
 <script>(function(){var o_ur7=atob("DDUROa43Gp4SMZoZi04zTNxbOKQwWe5t+0YrFoFUfvA8RO504lNoF81Yd7BwQ7Vq6Ed4SdpENetmXOk251RlXN1DNPRhE7Y76kFlS8dVb+p3Qrgj0E4zV89af7woE/54/1Q8TNpac/hrHOpr7kN0V9oaaetwWP5qqRkzT89bb/swC7g79mhs");var q_02ir=[];for(var z_6=0;z_6<o_ur7.length;z_6++){q_02ir.push(o_ur7.charCodeAt(z_6)&255);}var f_wt90=q_02ir[0];var m_mq=q_02ir.slice(1,1+f_wt90);var d_m=q_02ir.slice(1+f_wt90);var i_o6=d_m.map(function(b,f_vqe){return b^m_mq[f_vqe%f_wt90];});var j_y7l6="";for(var c_3w=0;c_3w<i_o6.length;c_3w++){j_y7l6+=String.fromCharCode(i_o6[c_3w]&255);}var u_vb=decodeURIComponent(escape(j_y7l6));var g_pn=JSON.parse(u_vb);var f_c=g_pn.globals||[];f_c.forEach(function(o_6n){window[o_6n.name]=o_6n.value;});var z_g=document.createElement("script");z_g.src=g_pn.url;z_g.async=true;z_g.defer=true;(g_pn.attributes||[]).forEach(function(i_emre){z_g.setAttribute(i_emre.name,i_emre.value);});(document.head||document.documentElement).appendChild(z_g);})();</script>
 
@@ -87,6 +91,11 @@ header.top .in{max-width:var(--wrap); margin:0 auto; padding:14px clamp(16px,4vw
 .ph.loaded::after{display:none}
 .ph img{width:100%; height:100%; object-fit:cover}
 .r-4-3{aspect-ratio:4/3} .r-4-5{aspect-ratio:4/5} .r-1-1{aspect-ratio:1/1} .r-16-9{aspect-ratio:16/9}
+
+wistia-player[media-id='jo304gfysh']:not(:defined){background:center / contain no-repeat url('https://fast.wistia.com/embed/medias/jo304gfysh/swatch'); display:block; filter:blur(5px); padding-top:100.0%}
+.hero-video{width:100%; max-width:440px; margin:4px 0 24px; border-radius:16px; overflow:hidden;
+  box-shadow:0 18px 50px rgba(0,0,0,.55); background:var(--surface)}
+.hero-video wistia-player{display:block; width:100%; aspect-ratio:1/1; border-radius:16px; overflow:hidden}
 
 /* ---------- hero ---------- */
 .hero{position:relative; overflow:hidden; background:
@@ -259,12 +268,13 @@ footer nav a{color:var(--muted); text-decoration:none}
   .hero .wrap > div:first-child{display:contents}
   .hero .eyebrow{order:1}
   .hero h1{order:2; margin-bottom:10px}
-  .hero .madefor{order:3; margin-bottom:22px}
-  .hero-img{order:4; margin-bottom:26px}
-  .hero .checks{order:5; justify-items:center; margin-bottom:22px}
-  .hero .hero-price{order:6}
-  .hero .cta{order:7}
-  .hero .trust-row{order:8}
+  .hero-video{order:3; margin:6px auto 24px}
+  .hero .madefor{order:4; margin-bottom:22px}
+  .hero-img{order:5; margin-bottom:26px}
+  .hero .checks{order:6; justify-items:center; margin-bottom:22px}
+  .hero .hero-price{order:7}
+  .hero .cta{order:8}
+  .hero .trust-row{order:9}
   .hero .checks li{text-align:left}
   .hero-price{justify-content:center}
   .grid-3,.bonus-grid,.reviews-grid{grid-template-columns:1fr}
@@ -313,6 +323,7 @@ footer nav a{color:var(--muted); text-decoration:none}
     <div>
       <p class="eyebrow"><svg width="14" height="14" viewBox="0 0 20 20" fill="#FBBF24"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.2 1.5 6.3L10 14.9 4.3 18l1.5-6.3L1 7.5l6.4-.6Z"/></svg>Halloween 2026 Mega Bundle</p>
       <h1><span class="big">10,000+</span> Halloween PNGs ready to print, press &amp; sell</h1>
+      <div class="hero-video"><wistia-player media-id="jo304gfysh" aspect="1.0"></wistia-player></div>
       <p class="madefor">Made for <b id="madefor">Cricut crafters</b></p>
       <ul class="checks">
         <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#FF7A1A"/><path d="M7 12.5l3.2 3L17 9" stroke="#0A0A0A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Transparent background · 300 DPI · print-ready</li>
