@@ -172,7 +172,10 @@ header.top .in{max-width:var(--wrap); margin:0 auto; padding:14px clamp(16px,4vw
 .free{background:rgba(132,204,22,.14); color:var(--slime); font-weight:800; padding:3px 10px; border-radius:999px; font-size:12px; letter-spacing:.06em}
 
 /* ---------- reviews ---------- */
-.reviews-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+.reviews-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px;
+  max-width:1000px; margin:0 auto}
+.ph.review{aspect-ratio:auto; min-height:120px; background:var(--surface-2); border-color:#333}
+.ph.review.loaded img{height:auto; object-fit:contain; border-radius:var(--radius)}
 
 /* ---------- pricing ---------- */
 .plans{display:grid; grid-template-columns:1fr 1.12fr; gap:22px; align-items:stretch; max-width:940px; margin:0 auto}
@@ -234,7 +237,6 @@ footer nav a{color:var(--muted); text-decoration:none}
   .hero .checks{justify-items:center}
   .hero .checks li{text-align:left}
   .hero-price{justify-content:center}
-  .hero-img{order:-1}
   .grid-3,.bonus-grid,.reviews-grid{grid-template-columns:1fr}
   .bonus-grid .bonus:nth-child(4){grid-column:auto}
   .make{grid-template-columns:repeat(2,1fr)}
@@ -351,17 +353,20 @@ footer nav a{color:var(--muted); text-decoration:none}
   </div>
 </section>
 
-<!-- =================== EASY TO USE =================== -->
-<section>
+<!-- =================== REVIEWS (hidden automatically until real images DEP-01..03 exist) =================== -->
+<section class="section-surface" id="reviews" hidden>
   <div class="wrap">
     <div class="center narrow">
-      <p class="eyebrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" fill="#FBBF24"/></svg>Easy to use</p>
-      <h2>Three steps. <span class="sl">Zero stress.</span></h2>
+      <p class="eyebrow"><svg width="14" height="14" viewBox="0 0 20 20" fill="#FBBF24"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.2 1.5 6.3L10 14.9 4.3 18l1.5-6.3L1 7.5l6.4-.6Z"/></svg>Real customers</p>
+      <h2>What makers are saying</h2>
     </div>
-    <div class="grid-3" style="margin-top:34px">
-      <div class="step"><div class="n">1</div><h3>Download instantly</h3><p>Your access link lands in your inbox seconds after payment. Every file is sorted into folders by style.</p></div>
-      <div class="step"><div class="n">2</div><h3>Drop it into your app</h3><p>Upload the PNG to Cricut Design Space, Silhouette, Canva, Procreate or your sublimation software.</p></div>
-      <div class="step"><div class="n">3</div><h3>Print, press, sell</h3><p>Make tees, mugs, stickers and décor for your family, your class or your Etsy shop before 31 October.</p></div>
+    <div class="reviews-grid" style="margin-top:34px">
+      <div class="ph review" data-img="DEP-01" data-label="DEP-01 · real review screenshot"></div>
+      <div class="ph review" data-img="DEP-02" data-label="DEP-02 · real review screenshot"></div>
+      <div class="ph review" data-img="DEP-03" data-label="DEP-03 · real review screenshot"></div>
+      <div class="ph review" data-img="DEP-04" data-label="DEP-04 · real review screenshot"></div>
+      <div class="ph review" data-img="DEP-05" data-label="DEP-05 · real review screenshot"></div>
+      <div class="ph review" data-img="DEP-06" data-label="DEP-06 · real review screenshot"></div>
     </div>
   </div>
 </section>
@@ -437,24 +442,6 @@ footer nav a{color:var(--muted); text-decoration:none}
         <p>New designs added to your Vault each year at no extra cost.</p>
         <a class="cta" href="#pricing" style="margin-top:8px">Get the Complete Vault</a>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- =================== REVIEWS (hidden automatically until real images DEP-01..03 exist) =================== -->
-<section class="section-surface" id="reviews" hidden>
-  <div class="wrap">
-    <div class="center narrow">
-      <p class="eyebrow"><svg width="14" height="14" viewBox="0 0 20 20" fill="#FBBF24"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.2 1.5 6.3L10 14.9 4.3 18l1.5-6.3L1 7.5l6.4-.6Z"/></svg>Real customers</p>
-      <h2>What makers are saying</h2>
-    </div>
-    <div class="reviews-grid" style="margin-top:34px">
-      <div class="ph r-4-5 review" data-img="DEP-01" data-label="DEP-01 · real review screenshot (4:5)"></div>
-      <div class="ph r-4-5 review" data-img="DEP-02" data-label="DEP-02 · real review screenshot (4:5)"></div>
-      <div class="ph r-4-5 review" data-img="DEP-03" data-label="DEP-03 · real review screenshot (4:5)"></div>
-      <div class="ph r-4-5 review" data-img="DEP-04" data-label="DEP-04 · real review screenshot (4:5)"></div>
-      <div class="ph r-4-5 review" data-img="DEP-05" data-label="DEP-05 · real review screenshot (4:5)"></div>
-      <div class="ph r-4-5 review" data-img="DEP-06" data-label="DEP-06 · real review screenshot (4:5)"></div>
     </div>
   </div>
 </section>
@@ -616,7 +603,10 @@ var CHECKOUT = {
     img.alt = el.getAttribute('data-label').replace(/^[A-Z]+-\d+[a-z]? · /, '');
     img.decoding = 'async';
     // above the fold loads straight away; everything else waits until it is scrolled near
-    img.loading = el.getBoundingClientRect().top < window.innerHeight * 1.2 ? 'eager' : 'lazy';
+    // review slots resolve straight away (they decide whether the section shows at all);
+    // everything else below the fold waits until it is scrolled near
+    img.loading = (el.classList.contains('review') ||
+                   el.getBoundingClientRect().top < window.innerHeight * 1.2) ? 'eager' : 'lazy';
     img.style.opacity = '0';
     el.appendChild(img);          // must be in the document, or lazy loading never starts
     img.onload = function(){
@@ -627,14 +617,14 @@ var CHECKOUT = {
     img.onerror = function(){ el.removeChild(img); tryLoad(el, i + 1); };
     img.src = 'img/' + el.getAttribute('data-img') + '.' + exts[i];
   }
-  document.querySelectorAll('.ph[data-img]').forEach(function(el){ tryLoad(el, 0); });
-
-  /* show the reviews section only once a real review image exists */
+  /* wire the reviews section up first: a cached 404 fires its error before a later listener exists */
   var reviews = document.getElementById('reviews');
   reviews.querySelectorAll('.review').forEach(function(el){
     el.addEventListener('ph-loaded', function(){ reviews.hidden = false; });
     el.addEventListener('ph-missing', function(){ el.style.display = 'none'; });
   });
+
+  document.querySelectorAll('.ph[data-img]').forEach(function(el){ tryLoad(el, 0); });
 })();
 
 /* Big numbers count up the first time they scroll into view */
@@ -709,8 +699,9 @@ var CHECKOUT = {
     rail.appendChild(clone);
   });
 
+  rail.style.scrollSnapType = 'none';   // snapping fights the drift and freezes it
   var SPEED = 0.35;            // px per frame, about 20px/s
-  var paused = false, resumeAt = 0, last = 0;
+  var paused = false, resumeAt = 0, last = 0, pos = 0;   // pos keeps the fraction scrollLeft rounds away
 
   function pause(ms){ paused = true; resumeAt = Date.now() + (ms || 1200); }
   rail.addEventListener('pointerenter', function(){ paused = true; resumeAt = 0; });
@@ -729,7 +720,9 @@ var CHECKOUT = {
     last = now;
     var gap = parseFloat(getComputedStyle(rail).columnGap || getComputedStyle(rail).gap) || 0;
     var half = (rail.scrollWidth + gap) / 2;      // one full set of cards, gap included
-    rail.scrollLeft = rail.scrollLeft >= half ? rail.scrollLeft - half + SPEED : rail.scrollLeft + SPEED;
+    if (Math.abs(rail.scrollLeft - pos) > 2) pos = rail.scrollLeft;   // the visitor scrolled it themselves
+    pos = pos >= half ? pos - half + SPEED : pos + SPEED;
+    rail.scrollLeft = pos;
   }
   requestAnimationFrame(tick);
 })();
