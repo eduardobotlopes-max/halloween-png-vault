@@ -314,9 +314,9 @@ footer nav a{color:var(--muted); text-decoration:none}
   <div class="wrap">
     <div class="rail-head">
       <div>
-        <p class="eyebrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#84CC16" stroke-width="1.8"/><circle cx="12" cy="12" r="3" fill="#84CC16"/></svg>What's inside the Vault</p>
-        <h2>20 spooky styles.<br><span class="pk">One download.</span></h2>
-        <p>Every trending Halloween look in one place, from cute ghosts to retro horror, all original artwork.</p>
+        <p class="eyebrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#84CC16" stroke-width="1.8"/><circle cx="12" cy="12" r="3" fill="#84CC16"/></svg>A look inside the Vault</p>
+        <h2>See some of what<br><span class="pk">you'll receive.</span></h2>
+        <p>A small sample of the 10,000+ designs waiting inside — 20 styles, from cute ghosts to retro horror, all original artwork.</p>
       </div>
       <div class="rail-nav"><button type="button" data-rail="-1" aria-label="Previous">←</button><button type="button" data-rail="1" aria-label="Next">→</button></div>
     </div>
@@ -684,13 +684,57 @@ var CHECKOUT = {
   }, 2200);
 })();
 
-/* Category rail arrows */
-document.querySelectorAll('[data-rail]').forEach(function(b){
-  b.addEventListener('click', function(){
-    var r = document.getElementById('rail');
-    r.scrollBy({left: parseInt(b.getAttribute('data-rail'), 10) * (r.clientWidth * 0.8), behavior:'smooth'});
+/* Category rail: arrows + a carousel that drifts on its own */
+(function(){
+  var rail = document.getElementById('rail');
+  var cards = [].slice.call(rail.children);
+
+  document.querySelectorAll('[data-rail]').forEach(function(b){
+    b.addEventListener('click', function(){
+      pause(6000);
+      rail.scrollBy({left: parseInt(b.getAttribute('data-rail'), 10) * (rail.clientWidth * 0.8), behavior:'smooth'});
+    });
   });
-});
+
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // a second copy of the cards makes the loop seamless: at the halfway point we jump back
+  cards.forEach(function(card){
+    var clone = card.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    // the original may still be loading, so the copy marks itself done when its image arrives
+    clone.querySelectorAll('.ph img').forEach(function(img){
+      var ph = img.parentNode;
+      if (img.complete && img.naturalWidth) ph.classList.add('loaded');
+      else img.addEventListener('load', function(){ ph.classList.add('loaded'); });
+    });
+    rail.appendChild(clone);
+  });
+
+  var SPEED = 0.35;            // px per frame, about 20px/s
+  var paused = false, resumeAt = 0, last = 0;
+
+  function pause(ms){ paused = true; resumeAt = Date.now() + (ms || 1200); }
+  rail.addEventListener('pointerenter', function(){ paused = true; resumeAt = 0; });
+  rail.addEventListener('pointerleave', function(){ paused = false; });
+  rail.addEventListener('pointerdown', function(){ pause(4000); });
+  rail.addEventListener('wheel', function(){ pause(4000); }, {passive: true});
+  rail.addEventListener('touchstart', function(){ pause(5000); }, {passive: true});
+
+  function tick(now){
+    requestAnimationFrame(tick);
+    if (paused){
+      if (!resumeAt || Date.now() < resumeAt) return;
+      paused = false;
+    }
+    if (now - last < 16) return;
+    last = now;
+    var gap = parseFloat(getComputedStyle(rail).columnGap || getComputedStyle(rail).gap) || 0;
+    var half = (rail.scrollWidth + gap) / 2;      // one full set of cards, gap included
+    rail.scrollLeft = rail.scrollLeft >= half ? rail.scrollLeft - half + SPEED : rail.scrollLeft + SPEED;
+  }
+  requestAnimationFrame(tick);
+})();
 
 /* Before/after drag slider */
 (function(){
