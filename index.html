@@ -734,15 +734,18 @@ var CHECKOUT = {
 (function(){
   var rail = document.getElementById('rail');
   var cards = [].slice.call(rail.children);
+  var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var buttonDistance = 0;
 
   document.querySelectorAll('[data-rail]').forEach(function(b){
     b.addEventListener('click', function(){
-      pause(6000);
-      rail.scrollBy({left: parseInt(b.getAttribute('data-rail'), 10) * (rail.clientWidth * 0.8), behavior:'smooth'});
+      var distance = parseInt(b.getAttribute('data-rail'), 10) * rail.clientWidth * 0.8;
+      if (reducedMotion) rail.scrollBy({left: distance, behavior:'smooth'});
+      else buttonDistance += distance;
     });
   });
 
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (reducedMotion) return;
 
   function start(){
     // A second copy makes the loop seamless. Starting after page load prevents blank cloned cards.
@@ -752,31 +755,22 @@ var CHECKOUT = {
       rail.appendChild(clone);
     });
 
-  rail.style.scrollSnapType = 'none';   // snapping fights the drift and freezes it
-  var SPEED = 1.1;             // px per frame, about 65px/s
-  var paused = false, resumeAt = 0, last = 0, pos = 0;   // pos keeps the fraction scrollLeft rounds away
+    rail.style.scrollSnapType = 'none';
+    var SPEED = 1.1; // continuous drift, including while the pointer is over the rail
+    var last = 0, pos = rail.scrollLeft;
 
-  function pause(ms){ paused = true; resumeAt = Date.now() + (ms || 1200); }
-  rail.addEventListener('pointerenter', function(){ paused = true; resumeAt = 0; });
-  rail.addEventListener('pointerleave', function(){ paused = false; });
-  rail.addEventListener('pointerdown', function(){ pause(4000); });
-  rail.addEventListener('wheel', function(){ pause(4000); }, {passive: true});
-  rail.addEventListener('touchstart', function(){ pause(5000); }, {passive: true});
-
-  function tick(now){
-    requestAnimationFrame(tick);
-    if (paused){
-      if (!resumeAt || Date.now() < resumeAt) return;
-      paused = false;
+    function tick(now){
+      requestAnimationFrame(tick);
+      if (now - last < 16) return;
+      last = now;
+      var gap = parseFloat(getComputedStyle(rail).columnGap || getComputedStyle(rail).gap) || 0;
+      var half = (rail.scrollWidth + gap) / 2;
+      if (Math.abs(rail.scrollLeft - pos) > 2) pos = rail.scrollLeft;
+      var step = Math.sign(buttonDistance) * Math.min(Math.abs(buttonDistance), 30);
+      buttonDistance -= step;
+      pos = ((pos + SPEED + step) % half + half) % half;
+      rail.scrollLeft = pos;
     }
-    if (now - last < 16) return;
-    last = now;
-    var gap = parseFloat(getComputedStyle(rail).columnGap || getComputedStyle(rail).gap) || 0;
-    var half = (rail.scrollWidth + gap) / 2;      // one full set of cards, gap included
-    if (Math.abs(rail.scrollLeft - pos) > 2) pos = rail.scrollLeft;   // the visitor scrolled it themselves
-    pos = pos >= half ? pos - half + SPEED : pos + SPEED;
-    rail.scrollLeft = pos;
-  }
     requestAnimationFrame(tick);
   }
   if (document.readyState === 'complete') start();
