@@ -130,17 +130,16 @@ wistia-player[media-id='jo304gfysh']:not(:defined){background:center / contain n
 .works-track{display:inline-flex; gap:56px; padding:22px 0; animation:marquee 34s linear infinite}
 .works-track span{font-family:"Barlow Condensed",sans-serif; font-weight:800; font-size:24px; color:#5A5A5A; text-transform:uppercase; letter-spacing:.04em}
 
-/* ---------- category rail (product-grid style) ---------- */
+/* ---------- two-way artwork showcase ---------- */
 .rail-head{display:flex; align-items:flex-end; justify-content:space-between; gap:16px; margin-bottom:22px}
 .rail-head p{margin:0}
-.rail{display:flex; gap:20px; overflow-x:auto; padding-bottom:12px; scroll-snap-type:x mandatory; -ms-overflow-style:none; scrollbar-width:none}
+.rail-stack{display:grid; gap:18px}
+.rail{display:flex; gap:16px; overflow-x:auto; padding-bottom:2px; -ms-overflow-style:none; scrollbar-width:none; overscroll-behavior-x:contain}
 .rail::-webkit-scrollbar{display:none}
-.card{flex:none; width:clamp(230px,62vw,290px); scroll-snap-align:start}
-.card .ph{margin-bottom:12px}
-.card .meta{display:flex; justify-content:space-between; font-size:13px; color:var(--muted); margin-bottom:4px}
-.card .meta .stars{color:#fff; display:inline-flex; align-items:center; gap:4px}
-.card h3{font-size:18px; margin:0 0 4px}
-.card .count{font-weight:800; color:var(--pumpkin); font-size:15px}
+.card{flex:none; width:clamp(205px,26vw,255px); padding:9px 9px 13px; border:1px solid var(--line); border-radius:15px; background:var(--surface)}
+.card .art-frame{display:grid; place-items:center; aspect-ratio:4/5; overflow:hidden; border-radius:10px; background:#080808}
+.card img{display:block; width:100%; height:100%; object-fit:contain}
+.card h3{font-size:17px; line-height:1.2; margin:12px 4px 0; text-align:center}
 .rail-nav{display:flex; gap:8px}
 .rail-nav button{width:42px; height:42px; border-radius:50%; border:1px solid var(--line); background:var(--surface-2); color:#fff; cursor:pointer; font-size:18px}
 
@@ -359,24 +358,32 @@ footer nav a{color:var(--muted); text-decoration:none}
     <div class="rail-head">
       <div>
         <p class="eyebrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#84CC16" stroke-width="1.8"/><circle cx="12" cy="12" r="3" fill="#84CC16"/></svg>Inside the Product Vault</p>
-        <h2>Designs for different<br><span class="pk">Halloween product styles.</span></h2>
-        <p>A working library for small print shops: 10,000+ designs across 20 styles, ready to turn into a varied seasonal range.</p>
+        <h2>A closer look at the<br><span class="pk">Halloween artwork.</span></h2>
+        <p>Explore a sample of the designs in the Vault, from playful Halloween characters to darker horror-inspired art.</p>
       </div>
       <div class="rail-nav"><button type="button" data-rail="-1" aria-label="Previous">←</button><button type="button" data-rail="1" aria-label="Next">→</button></div>
     </div>
-    <div class="rail" id="rail">
-      <article class="card"><div class="ph r-4-5" data-img="IMG-02-slasher" data-label="IMG-02 · Slasher Night (4:5)"></div><div class="meta"><span>Horror</span><span class="stars">★ Trending</span></div><h3>Slasher Night</h3><span class="count">850+ PNGs</span></article>
-      <article class="card"><div class="ph r-4-5" data-img="IMG-03-retro" data-label="IMG-03 · Retro Halloween (4:5)"></div><div class="meta"><span>Retro</span><span class="stars">★ Trending</span></div><h3>Retro &amp; Groovy Halloween</h3><span class="count">900+ PNGs</span></article>
-      <article class="card"><div class="ph r-4-5" data-img="IMG-04-pumpkins" data-label="IMG-04 · Pumpkins &amp; Jack-o'-lanterns (4:5)"></div><div class="meta"><span>Classic</span><span></span></div><h3>Pumpkins &amp; Jack-o'-lanterns</h3><span class="count">700+ PNGs</span></article>
-      <article class="card"><div class="ph r-4-5" data-img="IMG-05-monsters" data-label="IMG-05 · Classic Monsters (4:5)"></div><div class="meta"><span>Classic</span><span></span></div><h3>Classic Movie Monsters</h3><span class="count">650+ PNGs</span></article>
-      <article class="card"><div class="ph r-4-5" data-img="IMG-06-skeletons" data-label="IMG-06 · Skeletons &amp; Skulls (4:5)"></div><div class="meta"><span>Spooky</span><span></span></div><h3>Skeletons &amp; Sugar Skulls</h3><span class="count">600+ PNGs</span></article>
-      <article class="card"><div class="ph r-4-5" data-img="IMG-07-horror" data-label="IMG-07 · Horror Aesthetic (4:5)"></div><div class="meta"><span>Dark</span><span></span></div><h3>Horror Night Aesthetic</h3><span class="count">550+ PNGs</span></article>
-      <article class="card"><div class="ph r-4-5" data-img="IMG-08-kids" data-label="IMG-08 · Kids Halloween (4:5)"></div><div class="meta"><span>Kids</span><span></span></div><h3>Little Monsters (Kids)</h3><span class="count">800+ PNGs</span></article>
-      <article class="card"><div class="ph r-4-5" data-img="IMG-09-quotes" data-label="IMG-09 · Sarcastic Quotes (4:5)"></div><div class="meta"><span>Typography</span><span></span></div><h3>Funny &amp; Sarcastic Quotes</h3><span class="count">750+ PNGs</span></article>
-      <article class="card"><div class="ph r-4-5" data-img="IMG-10-coquette" data-label="IMG-10 · Coquette Halloween (4:5)"></div><div class="meta"><span>Coquette</span><span class="stars">★ Trending</span></div><h3>Coquette &amp; Pink Halloween</h3><span class="count">500+ PNGs</span></article>
-      <article class="card"><div class="ph r-4-5" data-img="IMG-11-neon" data-label="IMG-11 · Neon Halloween (4:5)"></div><div class="meta"><span>Neon</span><span></span></div><h3>Neon Glow Halloween</h3><span class="count">450+ PNGs</span></article>
+    <div class="rail-stack">
+      <div class="rail" id="rail-left" aria-label="Halloween artwork moving left">
+        <article class="card"><div class="art-frame"><img src="img/carousel/halloween-pirate-pups.webp" alt="Halloween pirate pups in costume" width="1100" height="1100"></div><h3>Halloween Pirate Pups</h3></article>
+        <article class="card"><div class="art-frame"><img src="img/carousel/little-halloween-monsters.webp" alt="Playful little monsters in Halloween costumes" width="1080" height="1200"></div><h3>Little Halloween Monsters</h3></article>
+        <article class="card"><div class="art-frame"><img src="img/carousel/freaking-melting.webp" alt="Freaking Melting Halloween ice cream artwork" width="1100" height="917"></div><h3>Freaking Melting</h3></article>
+        <article class="card"><div class="art-frame"><img src="img/carousel/the-boys-of-summer.webp" alt="The Boys of Summer tropical horror artwork" width="1100" height="917"></div><h3>The Boys of Summer</h3></article>
+        <article class="card"><div class="art-frame"><img src="img/carousel/killer-summer-vibes.webp" alt="Killer Summer Vibes tropical horror artwork" width="1100" height="917"></div><h3>Killer Summer Vibes</h3></article>
+        <article class="card"><div class="art-frame"><img src="img/carousel/haunted-ghosts.webp" alt="Green-haired ghost and haunted characters" width="1080" height="1200"></div><h3>Haunted Ghosts</h3></article>
+        <article class="card"><div class="art-frame"><img src="img/carousel/sewer-clown.webp" alt="Sinister clown against a fiery background" width="1080" height="1200"></div><h3>Sewer Clown</h3></article>
+      </div>
+      <div class="rail" id="rail-right" aria-label="Halloween artwork moving right">
+        <article class="card"><div class="art-frame"><img src="img/carousel/horror-icons.webp" alt="Ensemble of masked horror characters" width="1080" height="1200"></div><h3>Horror Icons</h3></article>
+        <article class="card"><div class="art-frame"><img src="img/carousel/camp-night-slasher.webp" alt="Masked slasher at a stormy campsite" width="1080" height="1200"></div><h3>Camp Night Slasher</h3></article>
+        <article class="card"><div class="art-frame"><img src="img/carousel/masked-ghost.webp" alt="Masked ghost holding a phone" width="1080" height="1200"></div><h3>Masked Ghost</h3></article>
+        <article class="card"><div class="art-frame"><img src="img/carousel/friday-night-fright.webp" alt="Masked slasher looming behind frightened characters" width="1080" height="1200"></div><h3>Friday Night Fright</h3></article>
+        <article class="card"><div class="art-frame"><img src="img/carousel/nightmare-slasher.webp" alt="Nightmare slasher artwork in fiery red" width="1080" height="1200"></div><h3>Nightmare Slasher</h3></article>
+        <article class="card"><div class="art-frame"><img src="img/carousel/slasher-duo.webp" alt="Two classic-style slashers in black and white" width="1080" height="1200"></div><h3>Slasher Duo</h3></article>
+        <article class="card"><div class="art-frame"><img src="img/carousel/horror-legends.webp" alt="Horror character ensemble on a dark background" width="1080" height="1200"></div><h3>Horror Legends</h3></article>
+      </div>
     </div>
-    <p class="center" style="margin-top:18px; font-size:15px">+ 10 more styles: cute ghosts, witchy vibes, bats, black cats, haunted houses, candy, teacher Halloween, dog &amp; cat mums, UK "trick or treat" signs and more.</p>
+    <p class="center" style="margin-top:18px; font-size:15px">A glimpse of the artwork waiting inside the 10,000+ design Vault.</p>
   </div>
 </section>
 
@@ -730,46 +737,54 @@ var CHECKOUT = {
   }
 })();
 
-/* Category rail: all images load before its seamless carousel begins */
+/* The two artwork rows loop continuously in opposite directions, even after a click or drag. */
 (function(){
-  var rail = document.getElementById('rail');
-  var cards = [].slice.call(rail.children);
+  var rails = [document.getElementById('rail-left'), document.getElementById('rail-right')];
   var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var buttonDistance = 0;
+  var states = [];
 
   document.querySelectorAll('[data-rail]').forEach(function(b){
     b.addEventListener('click', function(){
-      var distance = parseInt(b.getAttribute('data-rail'), 10) * rail.clientWidth * 0.8;
-      if (reducedMotion) rail.scrollBy({left: distance, behavior:'smooth'});
-      else buttonDistance += distance;
+      var direction = parseInt(b.getAttribute('data-rail'), 10);
+      if (reducedMotion) rails.forEach(function(rail){ rail.scrollBy({left: direction * rail.clientWidth * 0.8, behavior:'smooth'}); });
+      else states.forEach(function(state){ state.buttonDistance += direction * state.rail.clientWidth * 0.8; });
     });
   });
 
   if (reducedMotion) return;
 
   function start(){
-    // A second copy makes the loop seamless. Starting after page load prevents blank cloned cards.
-    cards.forEach(function(card){
-      var clone = card.cloneNode(true);
-      clone.setAttribute('aria-hidden', 'true');
-      rail.appendChild(clone);
+    // Images are eager-loaded before duplicating the cards, avoiding empty or black slides.
+    rails.forEach(function(rail, index){
+      [].slice.call(rail.children).forEach(function(card){
+        var clone = card.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        clone.querySelector('img').alt = '';
+        rail.appendChild(clone);
+      });
+      var gap = parseFloat(getComputedStyle(rail).gap) || 0;
+      var loopWidth = (rail.scrollWidth + gap) / 2;
+      var pos = index === 0 ? 0 : loopWidth;
+      rail.scrollLeft = pos;
+      states.push({rail:rail, direction:index === 0 ? 1 : -1, loopWidth:loopWidth, pos:pos, buttonDistance:0});
     });
 
-    rail.style.scrollSnapType = 'none';
-    var SPEED = 1.1; // continuous drift, including while the pointer is over the rail
-    var last = 0, pos = rail.scrollLeft;
+    var SPEED = 1.1, last = 0;
 
     function tick(now){
       requestAnimationFrame(tick);
       if (now - last < 16) return;
       last = now;
-      var gap = parseFloat(getComputedStyle(rail).columnGap || getComputedStyle(rail).gap) || 0;
-      var half = (rail.scrollWidth + gap) / 2;
-      if (Math.abs(rail.scrollLeft - pos) > 2) pos = rail.scrollLeft;
-      var step = Math.sign(buttonDistance) * Math.min(Math.abs(buttonDistance), 30);
-      buttonDistance -= step;
-      pos = ((pos + SPEED + step) % half + half) % half;
-      rail.scrollLeft = pos;
+      states.forEach(function(state){
+        var rail = state.rail;
+        var gap = parseFloat(getComputedStyle(rail).gap) || 0;
+        state.loopWidth = (rail.scrollWidth + gap) / 2;
+        if (Math.abs(rail.scrollLeft - state.pos) > 2) state.pos = rail.scrollLeft;
+        var step = Math.sign(state.buttonDistance) * Math.min(Math.abs(state.buttonDistance), 30);
+        state.buttonDistance -= step;
+        state.pos = ((state.pos + state.direction * SPEED + step) % state.loopWidth + state.loopWidth) % state.loopWidth;
+        rail.scrollLeft = state.pos;
+      });
     }
     requestAnimationFrame(tick);
   }
